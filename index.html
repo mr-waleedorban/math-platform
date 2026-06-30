@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة مستر وليد عربان | للرياضيات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            --neon-blue: #00f2fe;
+            --purple-glow: #4facfe;
+            --accent-pink: #ff007f;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #1a202c;
+        }
+
+        /* الإعدادات العامة والحركات */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f0f4f8;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(0, 242, 254, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* الهيدر الأسطوري المتحرك */
+        header {
+            background: var(--main-gradient);
+            color: white;
+            padding: 90px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,242,254,0.1) 0%, transparent 60%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+            animation: fadeIn 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .badge-math {
+            background: var(--accent-pink);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+        }
+
+        /* حاوي المحتوى */
+        .container {
+            max-width: 1200px;
+            margin: -40px auto 50px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* مميزات المنصة الواقعية */
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--neon-blue);
+            animation: fadeIn 1.4s ease-out;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 242, 254, 0.2);
+        }
+
+        .feature-box i {
+            font-size: 2.5rem;
+            color: var(--purple-glow);
+            margin-bottom: 15px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* كروت المراحل */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 40px 0 20px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(to left, var(--neon-blue), var(--accent-pink));
+            margin: 10px auto 0;
+            border-radius: 10px;
+        }
+
+        .stages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 8px;
+            background: linear-gradient(to left, var(--neon-blue), var(--purple-glow));
+        }
+
+        .card.secondary-card::before {
+            background: linear-gradient(to left, var(--accent-pink), #8a2387);
+        }
+
+        .card i {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .card.secondary-card i {
+            background: linear-gradient(135deg, #ff007f 0%, #7f00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* الأزرار الخارقة والمتحركة */
+        .btn-glow {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple-glow), var(--neon-blue));
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .card.secondary-card .btn-glow {
+            background: linear-gradient(135deg, var(--accent-pink), #7f00ff);
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.6);
+        }
+
+        /* سيكشن الفيديو السينمائي حقيقي */
+        .video-section {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            margin-top: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-top: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* فورم الحجز الزجاجي */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 45px;
+            margin-top: 60px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.7);
+        }
+
+        .form-group input:focus {
+            border-color: var(--neon-blue);
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            background: white;
+        }
+
+        .btn-submit {
+            width: 100%;
+            animation: pulse 2s infinite;
+        }
+
+        /* الفوتر الفخم */
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 80px;
+            font-size: 1.1rem;
+        }
+
+        footer i {
+            color: var(--accent-pink);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="badge-math"><i class="fa-solid fa-calculator"></i> مستر وليد عربان Math</span>
+        <h1>📐 منصة مستر وليد عربان</h1>
+        <p>مفهوم جديد للتميز وفهم الرياضيات للمرحلتين الإعدادية والثانوية. هنبسطهالك ونقفلها سوا! 🚀</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="features-section">
+            <div class="feature-box">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h3>تأسيس خطوة بخطوة</h3>
+                <p>بندخل المنهج بعد تمكين الطالب من الأساسيات الرياضية التراكمية عشان يحل بكل ثقة.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h3>فنيات الحل السريع</h3>
+                <p>تدريب مكثف على فنيات النظام الجديد واستخدام الآلة الحاسبة لاختصار الوقت وضمان التقفيل.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-clipboard-question"></i>
+                <h3>متابعة وتقييم دوري</h3>
+                <p>اختبارات مستمرة بعد كل حصة للتأكد من استيعاب الطالب لكل فكرة قبل الانتقال للدرس الجديد.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">اختر مرحلتك التعليمية وانطلق 🌟</h2>
+        <div class="stages-container">
+            <div class="card">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h3>المرحلة الإعدادية</h3>
+                <p>شرح تفصيلي وممتع لكل دروس الجبر والهندسة لصفوف الأول والثاني والثالث الإعدادي.</p>
+                <button class="btn-glow" onclick="alert('⚡ مرحباً بك في معسكر الإعدادي! تم تجهيز المحاضرات.')">ادخل الآن <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+
+            <div class="card secondary-card">
+                <i class="fa-solid fa-bolt-lightning"></i>
+                <h3>المرحلة الثانوية</h3>
+                <p>تأسيس عميق لطلاب ثانوية عامة (تفاضل، تكامل، هندسة فراغية، وميكانيكا) للوصول لأعلى الدرجات.</p>
+                <button class="btn-glow" onclick="alert('🔥 مرحباً بك في كوكب الثانوي وعمالقة الرياضيات مع مستر وليد!')">افتح بوابتك للمستقبل <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <h2 class="section-title">🎬 مهارات الآلة الحاسبة وفنيات الحل السريع</h2>
+            <p style="color: #666; margin-top: 10px;">شاهد مهارة تحليل أي مقدار ثلاثي في ثوانٍ معدودة بأسلوب مستر وليد عربان</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/K4IJ71GeWHg" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2 class="section-title" style="margin-top: 0;">🚀 احجز مكانك في قطار المتفوقين</h2>
+            <p style="text-align: center; color: #555; margin-bottom: 30px;">سجل بياناتك الحقيقية وفريق الدعم هيتواصل معاك فوراً لشرح طريقة الاشتراك وتفعيل الحصص</p>
+            <form onsubmit="event.preventDefault(); alert('👑 يا بطل تم استلام بياناتك بنجاح! سيتواصل معك فريق مستر وليد قريباً جداً لمساعدتك.');">
+                <div class="form-group">
+                    <label><i class="fa-solid fa-user"></i> اسم الطالب بالكامل:</label>
+                    <input type="text" placeholder="اكتب اسمك الثلاثي" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-brands fa-whatsapp"></i> رقم هاتف الواتساب الفعال:</label>
+                    <input type="tel" placeholder="01xxxxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-school"></i> الصف الدراسي الحالي:</label>
+                    <input type="text" placeholder="مثال: الصف الثالث الثانوي" required>
+                </div>
+                <button type="submit" class="btn-glow btn-submit">تسجيل وطلب تفاصيل الاشتراك <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة لمنصة مستر وليد عربان © 2026</p>
+    </footer>
+
+</body>
+</html>
