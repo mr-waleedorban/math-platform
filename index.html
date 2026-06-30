@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة مستر وليد عربان | للماث</title>
+    <title>منصة مستر وليد عربان | Mr. Waleed Orban - Math Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,20 +76,32 @@
         }
 
         header h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             margin-bottom: 15px;
             letter-spacing: 1px;
             text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
             animation: fadeIn 1s ease-out;
+            line-height: 1.4;
+        }
+
+        .english-welcome {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: block;
+            margin-top: 5px;
+            background: linear-gradient(to right, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         header p {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             opacity: 0.9;
             font-weight: 300;
             max-width: 700px;
-            margin: 0 auto 30px;
+            margin: 20px auto 0;
             animation: fadeIn 1.2s ease-out;
         }
 
@@ -114,7 +126,7 @@
             z-index: 10;
         }
 
-        /* مميزات المنصة الواقعية */
+        /* مميزات المنصة */
         .features-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -156,7 +168,7 @@
             color: #555;
         }
 
-        /* كروت المراحل */
+        /* سيكشن المراحل والصفوف */
         .section-title {
             text-align: center;
             font-size: 2.2rem;
@@ -175,90 +187,93 @@
             border-radius: 10px;
         }
 
-        .stages-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+        .stages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 35px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .card {
+        .stage-row {
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 20px;
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            border-right: 6px solid var(--neon-blue);
+            transition: all 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        .stage-row.secondary-row {
+            border-right-color: var(--accent-pink);
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 8px;
-            background: linear-gradient(to left, var(--neon-blue), var(--purple-glow));
+        .stage-row:hover {
+            transform: scale(1.01) translateX(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
         }
 
-        .card.secondary-card::before {
-            background: linear-gradient(to left, var(--accent-pink), #8a2387);
+        .stage-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .card i {
-            font-size: 3.5rem;
+        .stage-info i {
+            font-size: 2.2rem;
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            display: inline-block;
         }
 
-        .card.secondary-card i {
+        .stage-row.secondary-row .stage-info i {
             background: linear-gradient(135deg, #ff007f 0%, #7f00ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+        .stage-text h3 {
+            font-size: 1.4rem;
             font-weight: 700;
+            color: #111;
+            margin-bottom: 5px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* الأزرار الخارقة والمتحركة */
-        .btn-glow {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--purple-glow), var(--neon-blue));
+        .stage-text p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .btn-select-stage {
+            background: #0f172a;
             color: white;
-            padding: 14px 35px;
+            padding: 10px 25px;
             border-radius: 50px;
             text-decoration: none;
-            margin-top: 25px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
         }
 
-        .card.secondary-card .btn-glow {
+        .stage-row:hover .btn-select-stage {
+            background: linear-gradient(135deg, var(--purple-glow), var(--neon-blue));
+            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .stage-row.secondary-row:hover .btn-select-stage {
             background: linear-gradient(135deg, var(--accent-pink), #7f00ff);
             box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
         }
 
-        .btn-glow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.6);
-        }
-
-        /* سيكشن الفيديو السينمائي حقيقي */
+        /* سيكشن الفيديو */
         .video-section {
             background: white;
             border-radius: 30px;
@@ -283,7 +298,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
         }
 
-        /* فورم الحجز الزجاجي */
+        /* فورم الحجز */
         .contact-section {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
@@ -305,7 +320,7 @@
             color: #333;
         }
 
-        .form-group input {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 15px;
             border: 2px solid #e2e8f0;
@@ -313,9 +328,10 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             background: rgba(255,255,255,0.7);
+            color: #1a202c;
         }
 
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus {
             border-color: var(--neon-blue);
             outline: none;
             box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
@@ -324,10 +340,25 @@
 
         .btn-submit {
             width: 100%;
+            background: linear-gradient(135deg, var(--purple-glow), var(--neon-blue));
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+            transition: all 0.3s ease;
             animation: pulse 2s infinite;
         }
 
-        /* الفوتر الفخم */
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.6);
+        }
+
+        /* الفوتر */
         footer {
             background: #0f172a;
             color: white;
@@ -337,17 +368,33 @@
             font-size: 1.1rem;
         }
 
-        footer i {
-            color: var(--accent-pink);
+        @media (max-width: 600px) {
+            .stage-row {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .stage-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            header h1 {
+                font-size: 2.2rem;
+            }
+            .english-welcome {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <span class="badge-math"><i class="fa-solid fa-calculator"></i> مستر وليد عربان Math</span>
-        <h1>📐 منصة مستر وليد عربان</h1>
-        <p>مفهوم جديد للتميز وفهم الماث للمرحلتين الإعدادية والثانوية. هنبسطهالك ونقفلها سوا! 🚀</p>
+        <span class="badge-math"><i class="fa-solid fa-calculator"></i> Mr. Waleed Orban | Math Teacher</span>
+        <h1>أهلاً بك في منصة مستر وليد عربان
+            <span class="english-welcome">Welcome to Mr. Waleed Orban Platform</span>
+        </h1>
+        <p>مفهوم جديد للتميز وفهم الماث (Math) لطلاب اللغات والمستويات المتقدمة. هنبسطهالك ونقفلها سوا! 🚀</p>
     </header>
 
     <div class="container">
@@ -355,36 +402,86 @@
         <div class="features-section">
             <div class="feature-box">
                 <i class="fa-solid fa-graduation-cap"></i>
-                <h3>تأسيس خطوة بخطوة</h3>
+                <h3>Step-by-Step Basics</h3>
                 <p>بندخل المنهج بعد تمكين الطالب من الأساسيات التراكمية في الماث عشان يحل بكل ثقة.</p>
             </div>
             <div class="feature-box">
                 <i class="fa-solid fa-lightbulb"></i>
-                <h3>فنيات الحل السريع</h3>
+                <h3>Smart Solutions</h3>
                 <p>تدريب مكثف على فنيات النظام الجديد واستخدام الآلة الحاسبة لاختصار الوقت وضمان التقفيل.</p>
             </div>
             <div class="feature-box">
                 <i class="fa-solid fa-clipboard-question"></i>
-                <h3>متابعة وتقييم دوري</h3>
+                <h3>Continuous Evaluation</h3>
                 <p>اختبارات مستمرة بعد كل حصة للتأكد من استيعاب الطالب لكل فكرة قبل الانتقال للدرس الجديد.</p>
             </div>
         </div>
 
-        <h2 class="section-title">اختر مرحلتك التعليمية وانطلق 🌟</h2>
-        <div class="stages-container">
-            <div class="card">
-                <i class="fa-solid fa-user-graduate"></i>
-                <h3>المرحلة الإعدادية</h3>
-                <p>شرح تفصيلي وممتع لكل فروع الماث لصفوف الأول والثاني والثالث الإعدادي.</p>
-                <button class="btn-glow" onclick="alert('⚡ مرحباً بك في معسكر الإعدادي! تم تجهيز المحاضرات.')">ادخل الآن <i class="fa-solid fa-arrow-left"></i></button>
+        <h2 class="section-title">Select Your Academic Grade 🌟</h2>
+        
+        <!-- تقسيم الصفوف لغاية تانية ثانوي فقط -->
+        <div class="stages-list">
+            
+            <!-- Prep 1 -->
+            <div class="stage-row">
+                <div class="stage-info">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <div class="stage-text">
+                        <h3>Prep 1 (الصف الأول الإعدادي)</h3>
+                        <p>Math curriculum for first prep students - Algebra & Geometry.</p>
+                    </div>
+                </div>
+                <button class="btn-select-stage" onclick="scrollToForm('Prep 1')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
             </div>
 
-            <div class="card secondary-card">
-                <i class="fa-solid fa-bolt-lightning"></i>
-                <h3>المرحلة الثانوية</h3>
-                <p>تأسيس عميق لطلاب ثانوية عامة (Math) للوصول لأعلى الدرجات وتقفيل الامتحان.</p>
-                <button class="btn-glow" onclick="alert('🔥 مرحباً بك في كوكب الثانوي وعمالقة الماث مع مستر وليد!')">افتح بوابتك للمستقبل <i class="fa-solid fa-arrow-left"></i></button>
+            <!-- Prep 2 -->
+            <div class="stage-row">
+                <div class="stage-info">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <div class="stage-text">
+                        <h3>Prep 2 (الصف الثاني الإعدادي)</h3>
+                        <p>Math curriculum for second prep students - Algebra & Geometry.</p>
+                    </div>
+                </div>
+                <button class="btn-select-stage" onclick="scrollToForm('Prep 2')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
             </div>
+
+            <!-- Prep 3 -->
+            <div class="stage-row">
+                <div class="stage-info">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <div class="stage-text">
+                        <h3>Prep 3 (الصف الثالث الإعدادي)</h3>
+                        <p>Certificated prep stage math - Full support to get full marks.</p>
+                    </div>
+                </div>
+                <button class="btn-select-stage" onclick="scrollToForm('Prep 3')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+
+            <!-- Senior 1 -->
+            <div class="stage-row secondary-row">
+                <div class="stage-info">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                    <div class="stage-text">
+                        <h3>Senior 1 (الصف الأول الثانوي)</h3>
+                        <p>Secondary stage foundation - Algebra, Trigonometry & Analytical Geometry.</p>
+                    </div>
+                </div>
+                <button class="btn-select-stage" onclick="scrollToForm('Senior 1')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+
+            <!-- Senior 2 -->
+            <div class="stage-row secondary-row">
+                <div class="stage-info">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                    <div class="stage-text">
+                        <h3>Senior 2 (الصف الثاني الثانوي)</h3>
+                        <p>Pure Math & Applied Math for secondary school students.</p>
+                    </div>
+                </div>
+                <button class="btn-select-stage" onclick="scrollToForm('Senior 2')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
+            </div>
+
         </div>
 
         <div class="video-section">
@@ -395,9 +492,9 @@
             </div>
         </div>
 
-        <div class="contact-section">
+        <div class="contact-section" id="bookingFormSection">
             <h2 class="section-title" style="margin-top: 0;">🚀 احجز مكانك في قطار المتفوقين</h2>
-            <p style="text-align: center; color: #555; margin-bottom: 30px;">سجل بياناتك الحقيقية وفريق الدعم هيتواصل معاك فوراً لشرح طريقة الاشتراك وتفعيل الحصص</p>
+            <p style="text-align: center; color: #555; margin-bottom: 30px;">سجل بياناتك وفريق الدعم هيتواصل معاك فوراً لشرح طريقة الاشتراك وتفعيل الحصص</p>
             <form id="whatsappForm">
                 <div class="form-group">
                     <label><i class="fa-solid fa-user"></i> اسم الطالب بالكامل:</label>
@@ -408,10 +505,17 @@
                     <input type="tel" placeholder="01xxxxxxxxx" required>
                 </div>
                 <div class="form-group">
-                    <label><i class="fa-solid fa-school"></i> الصف الدراسي الحالي:</label>
-                    <input type="text" placeholder="مثال: الصف الثالث الثانوي" required>
+                    <label><i class="fa-solid fa-school"></i> الصف الدراسي الحالي (Grade):</label>
+                    <select id="gradeSelect" required>
+                        <option value="" disabled selected>اختر صفك الدراسي</option>
+                        <option value="Prep 1 (الصف الأول الإعدادي)">Prep 1 (الصف الأول الإعدادي)</option>
+                        <option value="Prep 2 (الصف الثاني الإعدادي)">Prep 2 (الصف الثاني الإعدادي)</option>
+                        <option value="Prep 3 (الصف الثالث الإعدادي)">Prep 3 (الصف الثالث الإعدادي)</option>
+                        <option value="Senior 1 (الصف الأول الثانوي)">Senior 1 (الصف الأول الثانوي)</option>
+                        <option value="Senior 2 (الصف الثاني الثانوي)">Senior 2 (الصف الثاني الثانوي)</option>
+                    </select>
                 </div>
-                <button type="submit" class="btn-glow btn-submit">تسجيل وطلب تفاصيل الاشتراك <i class="fa-solid fa-paper-plane"></i></button>
+                <button type="submit" class="btn-submit">تسجيل وطلب تفاصيل الاشتراك <i class="fa-solid fa-paper-plane"></i></button>
             </form>
         </div>
 
@@ -422,23 +526,31 @@
     </footer>
 
     <script>
+        function scrollToForm(gradeValue) {
+            const formSection = document.getElementById('bookingFormSection');
+            formSection.scrollIntoView({ behavior: 'smooth' });
+            
+            const selectElement = document.getElementById('gradeSelect');
+            for (let option of selectElement.options) {
+                if (option.value.includes(gradeValue)) {
+                    option.selected = true;
+                    break;
+                }
+            }
+        }
+
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // سحب البيانات من الفورم
             let name = document.querySelector('input[placeholder="اكتب اسمك الثلاثي"]').value;
-            let grade = document.querySelector('input[placeholder="مثال: الصف الثالث الثانوي"]').value;
+            let grade = document.getElementById('gradeSelect').value;
             
-            // نص الرسالة المختصر والذكي للمستر
             let message = `السلام عليكم يا مستر وليد، أنا حابب أشترك في المنصة ودي بياناتي:\n\n`;
             message += `👤 الاسم: ${name}\n`;
             message += `📚 الصف الدراسي: ${grade}\n\n`;
             message += `محتاج أعرف من حضرتك تفاصيل الاشتراك وطريقة الدفع إيه؟`;
             
-            // تشفير الرسالة
             let encodedMessage = encodeURIComponent(message);
-            
-            // فتح الواتساب مباشرة
             window.open(`https://wa.me/201114458236?text=${encodedMessage}`, '_blank');
         });
     </script>
