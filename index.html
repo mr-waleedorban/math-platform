@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة مستر وليد عربان | للرياضيات</title>
+    <title>منصة مستر وليد عربان | للماث</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -347,7 +347,7 @@
     <header>
         <span class="badge-math"><i class="fa-solid fa-calculator"></i> مستر وليد عربان Math</span>
         <h1>📐 منصة مستر وليد عربان</h1>
-        <p>مفهوم جديد للتميز وفهم الرياضيات للمرحلتين الإعدادية والثانوية. هنبسطهالك ونقفلها سوا! 🚀</p>
+        <p>مفهوم جديد للتميز وفهم الماث للمرحلتين الإعدادية والثانوية. هنبسطهالك ونقفلها سوا! 🚀</p>
     </header>
 
     <div class="container">
@@ -356,7 +356,7 @@
             <div class="feature-box">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <h3>تأسيس خطوة بخطوة</h3>
-                <p>بندخل المنهج بعد تمكين الطالب من الأساسيات الرياضية التراكمية عشان يحل بكل ثقة.</p>
+                <p>بندخل المنهج بعد تمكين الطالب من الأساسيات التراكمية في الماث عشان يحل بكل ثقة.</p>
             </div>
             <div class="feature-box">
                 <i class="fa-solid fa-lightbulb"></i>
@@ -375,15 +375,15 @@
             <div class="card">
                 <i class="fa-solid fa-user-graduate"></i>
                 <h3>المرحلة الإعدادية</h3>
-                <p>شرح تفصيلي وممتع لكل دروس الجبر والهندسة لصفوف الأول والثاني والثالث الإعدادي.</p>
+                <p>شرح تفصيلي وممتع لكل فروع الماث لصفوف الأول والثاني والثالث الإعدادي.</p>
                 <button class="btn-glow" onclick="alert('⚡ مرحباً بك في معسكر الإعدادي! تم تجهيز المحاضرات.')">ادخل الآن <i class="fa-solid fa-arrow-left"></i></button>
             </div>
 
             <div class="card secondary-card">
                 <i class="fa-solid fa-bolt-lightning"></i>
                 <h3>المرحلة الثانوية</h3>
-                <p>تأسيس عميق لطلاب ثانوية عامة (تفاضل، تكامل، هندسة فراغية، وميكانيكا) للوصول لأعلى الدرجات.</p>
-                <button class="btn-glow" onclick="alert('🔥 مرحباً بك في كوكب الثانوي وعمالقة الرياضيات مع مستر وليد!')">افتح بوابتك للمستقبل <i class="fa-solid fa-arrow-left"></i></button>
+                <p>تأسيس عميق لطلاب ثانوية عامة (Math) للوصول لأعلى الدرجات وتقفيل الامتحان.</p>
+                <button class="btn-glow" onclick="alert('🔥 مرحباً بك في كوكب الثانوي وعمالقة الماث مع مستر وليد!')">افتح بوابتك للمستقبل <i class="fa-solid fa-arrow-left"></i></button>
             </div>
         </div>
 
@@ -398,7 +398,7 @@
         <div class="contact-section">
             <h2 class="section-title" style="margin-top: 0;">🚀 احجز مكانك في قطار المتفوقين</h2>
             <p style="text-align: center; color: #555; margin-bottom: 30px;">سجل بياناتك الحقيقية وفريق الدعم هيتواصل معاك فوراً لشرح طريقة الاشتراك وتفعيل الحصص</p>
-            <form onsubmit="event.preventDefault(); alert('👑 يا بطل تم استلام بياناتك بنجاح! سيتواصل معك فريق مستر وليد قريباً جداً لمساعدتك.');">
+            <form id="whatsappForm">
                 <div class="form-group">
                     <label><i class="fa-solid fa-user"></i> اسم الطالب بالكامل:</label>
                     <input type="text" placeholder="اكتب اسمك الثلاثي" required>
@@ -420,6 +420,28 @@
     <footer>
         <p>جميع الحقوق محفوظة لمنصة مستر وليد عربان © 2026</p>
     </footer>
+
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // سحب البيانات من الفورم
+            let name = document.querySelector('input[placeholder="اكتب اسمك الثلاثي"]').value;
+            let grade = document.querySelector('input[placeholder="مثال: الصف الثالث الثانوي"]').value;
+            
+            // نص الرسالة المختصر والذكي للمستر
+            let message = `السلام عليكم يا مستر وليد، أنا حابب أشترك في المنصة ودي بياناتي:\n\n`;
+            message += `👤 الاسم: ${name}\n`;
+            message += `📚 الصف الدراسي: ${grade}\n\n`;
+            message += `محتاج أعرف من حضرتك تفاصيل الاشتراك وطريقة الدفع إيه؟`;
+            
+            // تشفير الرسالة
+            let encodedMessage = encodeURIComponent(message);
+            
+            // فتح الواتساب مباشرة
+            window.open(`https://wa.me/201114458236?text=${encodedMessage}`, '_blank');
+        });
+    </script>
 
 </body>
 </html>
