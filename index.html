@@ -561,6 +561,53 @@
             font-weight: 900;
         }
 
+        /* تصميم جدول عرض بيانات الطلاب الجديد */
+        .admin-table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        .admin-table th {
+            background: #1f2833;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+        .admin-table td {
+            padding: 14px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #333;
+        }
+
+        .admin-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .btn-delete-row {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .btn-delete-row:hover {
+            background: #dc2626;
+        }
+
         /* سيكشن الفيديو */
         .video-section {
             background: white;
@@ -724,6 +771,7 @@
 </head>
 <body>
 
+    <!-- 🔐 شاشة تسجيل الدخول وبوابة العبور قبل فتح الموقع -->
     <div id="loginOverlay">
         <div class="login-box">
             <div style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 10px;"><i class="fa-solid fa-user-shield"></i></div>
@@ -737,6 +785,7 @@
         </div>
     </div>
 
+    <!-- 🚀 محتوى المنصة الرئيسي بالكامل -->
     <div id="mainPlatformContent">
 
         <div class="floating-container">
@@ -873,6 +922,7 @@
 
             </div>
 
+            <!-- سيكشن اختبار تحديد المستوى التفاعلي المدمج بالكامل -->
             <div class="quiz-section" id="quizSectionBlock">
                 <h2 class="section-title" style="color: white;">🧠 Check Your Level | اختبر مستواك في الماث</h2>
                 <p style="color: #ddd; max-width: 600px; margin: 10px auto 0;">جاهز للتحدي؟ اختر صفك الدراسي الآن وابدأ اختبار تحديد المستوى التفاعلي لتقييم مهاراتك التراكمية في الماث فوراً!</p>
@@ -900,6 +950,7 @@
                     </div>
                 </div>
 
+                <!-- حاوي الأسئلة التفاعلية الديناميكية -->
                 <div class="interactive-quiz-container" id="quizWindow">
                     <h3 id="currentQuizTitle" style="color: var(--accent-gold); text-align: center; margin-bottom: 25px; font-weight: 900;"></h3>
                     
@@ -912,13 +963,28 @@
                 </div>
             </div>
 
+            <!-- 👑 لوحة تحكم الإدارة المحدثة لعرض بيانات الطلاب حية! -->
             <div id="adminPanelSection">
-                <h3><i class="fa-solid fa-user-gear" style="color: var(--accent-gold);"></i> لوحة إدارة المنصة (السرية)</h3>
-                <p style="font-size: 1.1rem; color: #333; margin-bottom: 15px;">مرحباً بك يا مستر وليد. هذه اللوحة مخفية تماماً عن الطلاب ولا تفتح إلا بكود الإدارة الخاص بك:</p>
-                <ul style="margin-right: 20px; line-height: 2; color: #555;">
-                    <li>أكواد الطلاب المفعلة حالياً على السستم: <b style="color: green;">PREP-STUDENT</b> و <b style="color: green;">SEC-STUDENT</b></li>
-                    <li>لتغيير الأسئلة أو إضافة أكواد جديدة، يمكنك تعديل الجداول في مصفوفة السكريبت أسفل الملف بكل سهولة وبدون سيرفر.</li>
-                </ul>
+                <h3><i class="fa-solid fa-user-gear" style="color: var(--accent-gold);"></i> لوحة إدارة المنصة (بيانات الطلاب الحالية)</h3>
+                <p style="font-size: 1.1rem; color: #333; margin-bottom: 15px;">مرحباً بك يا مستر وليد. إليك قائمة بالطلاب الذين قاموا بالتسجيل في المنصة والطلب عبر الواتساب:</p>
+                
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>اسم الطالب بالكامل</th>
+                                <th>الصف الدراسي</th>
+                                <th>رقم الهاتف / الواتساب</th>
+                                <th>وقت التسجيل</th>
+                                <th>إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminStudentsTableBody">
+                            <!-- البيانات سيتم حقنها هنا تلقائياً بواسطة الجافاسكريبت -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="video-section">
@@ -935,11 +1001,11 @@
                 <form id="whatsappForm">
                     <div class="form-group">
                         <label><i class="fa-solid fa-user"></i> اسم الطالب بالكامل:</label>
-                        <input type="text" placeholder="اكتب اسمك الثلاثي" required>
+                        <input type="text" id="studentName" placeholder="اكتب اسمك الثلاثي" required>
                     </div>
                     <div class="form-group">
                         <label><i class="fa-brands fa-whatsapp"></i> رقم هاتف الواتساب الفعال:</label>
-                        <input type="tel" placeholder="01xxxxxxxxx" required>
+                        <input type="tel" id="studentPhone" placeholder="01xxxxxxxxx" required>
                     </div>
                     <div class="form-group">
                         <label><i class="fa-solid fa-school"></i> الصف الدراسي الحالي (Grade):</label>
@@ -1055,6 +1121,7 @@
                 if (inputCode === "ADMIN-ORBAN") {
                     document.getElementById('adminPanelSection').style.display = 'block';
                     document.getElementById('welcomeHeaderTitle').innerHTML = "مرحباً بك يا مستر وليد في لوحة إدارتك الفخمة <span class='english-welcome'>Welcome Back, Sir!</span>";
+                    loadStudentsTable(); // تحديث الجدول عند دخول الأدمن
                 } else {
                     document.getElementById('welcomeHeaderTitle').innerHTML = `أهلاً بك يا بطل (${validCodes[inputCode]}) <span class='english-welcome'>Let's Master Math Together!</span>`;
                 }
@@ -1116,7 +1183,6 @@
             resultBox.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // الإسكربتات الأصلية القديمة للموقع دون أي تعديل
         function scrollToForm(gradeValue) {
             const formSection = document.getElementById('bookingFormSection');
             formSection.scrollIntoView({ behavior: 'smooth' });
@@ -1130,12 +1196,25 @@
             }
         }
 
+        // 💾 إدارة بيانات الطلاب وحفظها في الـ localStorage ديناميكياً
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            let name = document.querySelector('input[placeholder="اكتب اسمك الثلاثي"]').value;
+            let name = document.getElementById('studentName').value;
+            let phone = document.getElementById('studentPhone').value;
             let grade = document.getElementById('gradeSelect').value;
+            let timeStamp = new Date().toLocaleString('ar-EG');
+
+            // جلب المخزن القديم أو إنشاء مصفوفة جديدة
+            let studentsList = JSON.parse(localStorage.getItem('platform_students')) || [];
             
+            // إضافة الطالب الجديد
+            studentsList.push({ name: name, phone: phone, grade: grade, time: timeStamp });
+            
+            // حفظ التحديث
+            localStorage.setItem('platform_students', JSON.stringify(studentsList));
+            
+            // إرسال رسالة الواتساب الأصلية
             let message = `السلام عليكم يا مستر وليد، أنا حابب أشترك في المنصة ودي بياناتي:\n\n`;
             message += `👤 الاسم: ${name}\n`;
             message += `📚 الصف الدراسي: ${grade}\n\n`;
@@ -1143,7 +1222,45 @@
             
             let encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/201114458236?text=${encodedMessage}`, '_blank');
+
+            // تصفير الفورم بعد الإرسال
+            document.getElementById('whatsappForm').reset();
         });
+
+        // دالة لعرض جدول الطلاب للأدمن
+        function loadStudentsTable() {
+            let studentsList = JSON.parse(localStorage.getItem('platform_students')) || [];
+            let tableBody = document.getElementById('adminStudentsTableBody');
+            tableBody.innerHTML = '';
+
+            if(studentsList.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#999;">لا يوجد طلاب مسجلين حتى الآن.</td></tr>`;
+                return;
+            }
+
+            studentsList.forEach((student, index) => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td><b>${student.name}</b></td>
+                        <td>${student.grade}</td>
+                        <td><a href="https://wa.me/${student.phone}" target="_blank" style="color:#25d366; text-decoration:none;"><i class="fa-brands fa-whatsapp"></i> ${student.phone}</a></td>
+                        <td>${student.time}</td>
+                        <td><button class="btn-delete-row" onclick="deleteStudent(${index})">حذف <i class="fa-solid fa-trash"></i></button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        // دالة لحذف طالب من اللوحة
+        function deleteStudent(index) {
+            if(confirm("هل أنت متأكد من حذف هذا الطالب من القائمة؟")) {
+                let studentsList = JSON.parse(localStorage.getItem('platform_students')) || [];
+                studentsList.splice(index, 1);
+                localStorage.setItem('platform_students', JSON.stringify(studentsList));
+                loadStudentsTable(); // إعادة تحميل الجدول
+            }
+        }
     </script>
 
 </body>
