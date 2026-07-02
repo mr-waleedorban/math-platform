@@ -45,6 +45,79 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
         }
 
+        /* 🔐 شاشة طلب كود الدخول الإلزامية */
+        #loginOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--main-gradient);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            border-top: 6px solid var(--accent-gold);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .login-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #111;
+            font-weight: 900;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .login-box button {
+            width: 100%;
+            background: #1f2833;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-box button:hover {
+            background: var(--accent-gold);
+            color: #111;
+        }
+
+        .error-msg {
+            color: #e53e3e;
+            font-size: 0.95rem;
+            margin-top: 12px;
+            display: none;
+            font-weight: bold;
+        }
+
+        /* حاوي المنصة الرئيسي (مخفي حتى تسجيل الدخول) */
+        #mainPlatformContent {
+            display: none;
+        }
+
         /* الهيدر الاحترافي الجديد بصورة المستر */
         header {
             background: var(--main-gradient);
@@ -330,7 +403,7 @@
             box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
         }
 
-        /* سيكشن اختبار تحديد المستوى */
+        /* سيكشن اختبار تحديد المستوى المطور داخل الصفحة بالتصحيح التلقائي */
         .quiz-section {
             background: linear-gradient(135deg, #1f2833, #0b0c10);
             border-radius: 30px;
@@ -354,7 +427,7 @@
             border-radius: 20px;
             padding: 25px 20px;
             transition: all 0.3s ease;
-            text-decoration: none;
+            cursor: pointer;
             color: white;
             display: flex;
             flex-direction: column;
@@ -398,6 +471,94 @@
         .quiz-card:hover .quiz-btn {
             background: white;
             box-shadow: 0 0 10px white;
+        }
+
+        /* صندوق نظام الامتحانات التفاعلي المباشر */
+        .interactive-quiz-container {
+            display: none;
+            background: rgba(255,255,255,0.05);
+            border: 2px dashed var(--accent-gold);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: right;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .question-block h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+        }
+
+        .options-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-item {
+            background: rgba(255,255,255,0.08);
+            padding: 14px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option-item:hover {
+            background: rgba(197, 160, 89, 0.2);
+        }
+
+        .option-item input {
+            display: none;
+        }
+
+        .option-item.selected {
+            background: var(--accent-gold);
+            color: #111;
+            font-weight: bold;
+        }
+
+        .quiz-result-box {
+            display: none;
+            background: white;
+            color: #111;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-right: 6px solid green;
+        }
+
+        /* 👑 لوحة تحكم التيم والمستر السرية */
+        #adminPanelSection {
+            display: none;
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            margin-top: 60px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border: 2px solid var(--accent-gold);
+            animation: fadeIn 0.5s ease;
+        }
+
+        #adminPanelSection h3 {
+            font-size: 1.6rem;
+            color: #111;
+            margin-bottom: 15px;
+            font-weight: 900;
         }
 
         /* سيكشن الفيديو */
@@ -499,7 +660,7 @@
         .floating-container {
             position: fixed;
             bottom: 30px;
-            left: 30px; /* تم وضعها يساراً لعدم تداخلها مع أي محتوى وعرضها باحترافية */
+            left: 30px;
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -563,210 +724,399 @@
 </head>
 <body>
 
-    <div class="floating-container">
-        <a href="https://wa.me/201114458236" target="_blank" class="floating-btn" title="تواصل عبر الواتساب">
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
-        <a href="https://www.facebook.com/share/1a52s4YPM5/" target="_blank" class="floating-btn" title="تابعنا على فيسبوك">
-            <i class="fa-brands fa-facebook-f"></i>
-        </a>
+    <div id="loginOverlay">
+        <div class="login-box">
+            <div style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 10px;"><i class="fa-solid fa-user-shield"></i></div>
+            <h2>بوابة دخول طلاب مستر وليد عربان</h2>
+            <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">يرجى كتابة كود التفعيل الخاص بمرحلتك الدراسية الممنوح لك من التيم</p>
+            <input type="text" id="studentCodeInput" placeholder="اكتب كود التفعيل هنا" autocomplete="off">
+            <button onclick="validateStudentCode()">دخول المنصة <i class="fa-solid fa-right-to-bracket"></i></button>
+            <div class="error-msg" id="loginError">❌ كود التفعيل غير صحيح! يرجى التواصل مع السكرتارية للحصول عليه.</div>
+            
+            <p style="font-size: 0.8rem; margin-top: 25px; color: #999;">أكواد تجريبية للاختبار الآن: <br> <b>PREP-STUDENT</b> أو <b>SEC-STUDENT</b> أو كود المستر: <b>ADMIN-ORBAN</b></p>
+        </div>
     </div>
 
-    <header>
-        <div class="avatar-container">
-            <img src="IMG-20260630-WA0005.jpg" alt="Mr. Waleed Orban">
-        </div>
-        <span class="badge-math"><i class="fa-solid fa-calculator"></i> Mr. Waleed Orban | Math Teacher</span>
-        <h1>أهلاً بك في منصة مستر وليد عربان
-            <span class="english-welcome">Welcome to Mr. Waleed Orban Platform</span>
-        </h1>
-        <p>مفهوم جديد للتميز وفهم الماث (Math) لطلاب اللغات والمستويات المتقدمة. هنبسطهالك ونقفلها سوا! 🚀</p>
-    </header>
+    <div id="mainPlatformContent">
 
-    <div class="container">
-        
-        <div class="elite-section">
-            <h2 class="section-title" style="margin-top: 0;">🏆 Elite Questions | بنك أسئلة المتفوقين</h2>
-            <p style="text-align: center; color: #666; margin-top: 10px;">اضغط على مرحلتك الدراسية لتحميل أقوى الأسئلة والأفكار التنافسية المتقدمة لطلاب اللغات:</p>
+        <div class="floating-container">
+            <a href="https://wa.me/201114458236" target="_blank" class="floating-btn" title="تواصل عبر الواتساب">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1a52s4YPM5/" target="_blank" class="floating-btn" title="تابعنا على فيسبوك">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+        </div>
+
+        <header>
+            <div class="avatar-container">
+                <img src="IMG-20260630-WA0005.jpg" alt="Mr. Waleed Orban">
+            </div>
+            <span class="badge-math"><i class="fa-solid fa-calculator"></i> Mr. Waleed Orban | Math Teacher</span>
+            <h1 id="welcomeHeaderTitle">أهلاً بك في منصة مستر وليد عربان
+                <span class="english-welcome">Welcome to Mr. Waleed Orban Platform</span>
+            </h1>
+            <p>مفهوم جديد للتميز وفهم الماث (Math) لطلاب اللغات والمستويات المتقدمة. هنبسطهالك ونقفلها سوا! 🚀</p>
+        </header>
+
+        <div class="container">
             
-            <div class="elite-grid">
-                <a href="#" class="elite-stage-box">
-                    <i class="fa-solid fa-star"></i>
-                    <h4>Prep 1</h4>
-                    <span>أولى إعدادي لغات</span>
-                </a>
-                <a href="#" class="elite-stage-box">
-                    <i class="fa-solid fa-star"></i>
-                    <h4>Prep 2</h4>
-                    <span>ثانية إعدادي لغات</span>
-                </a>
-                <a href="#" class="elite-stage-box">
-                    <i class="fa-solid fa-star"></i>
-                    <h4>Prep 3</h4>
-                    <span>ثالثة إعدادي لغات</span>
-                </a>
-                <a href="#" class="elite-stage-box">
-                    <i class="fa-solid fa-crown"></i>
-                    <h4>Senior 1</h4>
-                    <span>أولى ثانوي لغات</span>
-                </a>
-                <a href="#" class="elite-stage-box">
-                    <i class="fa-solid fa-crown"></i>
-                    <h4>Senior 2</h4>
-                    <span>ثانية ثانوي لغات</span>
-                </a>
-            </div>
-        </div>
-        
-        <div class="features-section">
-            <div class="feature-box">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <h3>Step-by-Step Basics</h3>
-                <p>بندخل المنهج بعد تمكين الطالب من الأساسيات التراكمية في الماث عشان يحل بكل ثقة.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fa-solid fa-lightbulb"></i>
-                <h3>Smart Solutions</h3>
-                <p>تدريب مكثف على فنيات النظام الجديد واستخدام الآلة الحاسبة لاختصار الوقت وضمان التقفيل.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fa-solid fa-clipboard-question"></i>
-                <h3>Continuous Evaluation</h3>
-                <p>اختبارات مستمرة بعد كل حصة للتأكد من استيعاب الطالب لكل فكرة قبل الانتقال للدرس الجديد.</p>
-            </div>
-        </div>
-
-        <h2 class="section-title">Select Your Academic Grade 🌟</h2>
-        
-        <div class="stages-list">
-            
-            <div class="stage-row">
-                <div class="stage-info">
-                    <i class="fa-solid fa-user-graduate"></i>
-                    <div class="stage-text">
-                        <h3>Prep 1 (الصف الأول الإعدادي)</h3>
-                        <p>Math curriculum for first prep students - Algebra & Geometry.</p>
-                    </div>
-                </div>
-                <button class="btn-select-stage" onclick="scrollToForm('Prep 1')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
-            </div>
-
-            <div class="stage-row">
-                <div class="stage-info">
-                    <i class="fa-solid fa-user-graduate"></i>
-                    <div class="stage-text">
-                        <h3>Prep 2 (الصف الثاني الإعدادي)</h3>
-                        <p>Math curriculum for second prep students - Algebra & Geometry.</p>
-                    </div>
-                </div>
-                <button class="btn-select-stage" onclick="scrollToForm('Prep 2')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
-            </div>
-
-            <div class="stage-row">
-                <div class="stage-info">
-                    <i class="fa-solid fa-user-graduate"></i>
-                    <div class="stage-text">
-                        <h3>Prep 3 (الصف الثالث الإعدادي)</h3>
-                        <p>Certificated prep stage math - Full support to get full marks.</p>
-                    </div>
-                </div>
-                <button class="btn-select-stage" onclick="scrollToForm('Prep 3')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
-            </div>
-
-            <div class="stage-row secondary-row">
-                <div class="stage-info">
-                    <i class="fa-solid fa-bolt-lightning"></i>
-                    <div class="stage-text">
-                        <h3>Senior 1 (الصف الأول الثانوي)</h3>
-                        <p>Secondary stage foundation - Algebra, Trigonometry & Analytical Geometry.</p>
-                    </div>
-                </div>
-                <button class="btn-select-stage" onclick="scrollToForm('Senior 1')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
-            </div>
-
-            <div class="stage-row secondary-row">
-                <div class="stage-info">
-                    <i class="fa-solid fa-bolt-lightning"></i>
-                    <div class="stage-text">
-                        <h3>Senior 2 (الصف الثاني الثانوي)</h3>
-                        <p>Pure Math & Applied Math for secondary school students.</p>
-                    </div>
-                </div>
-                <button class="btn-select-stage" onclick="scrollToForm('Senior 2')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
-            </div>
-
-        </div>
-
-        <div class="quiz-section">
-            <h2 class="section-title" style="color: white;">🧠 Check Your Level | اختبر مستواك في الماث</h2>
-            <p style="color: #ddd; max-width: 600px; margin: 10px auto 0;">جاهز للتحدي؟ اختر صفك الدراسي الآن وابدأ اختبار تحديد المستوى التفاعلي لتقييم مهاراتك التراكمية في الماث فوراً!</p>
-            
-            <div class="quiz-grid">
-                <a href="https://docs.google.com/forms/" target="_blank" class="quiz-card">
-                    <i class="fa-solid fa-brain"></i>
-                    <h4>Prep Stages</h4>
-                    <p>اختبار المرحلة الإعدادية</p>
-                    <span class="quiz-btn">ابدأ التحدي <i class="fa-solid fa-play"></i></span>
-                </a>
+            <div class="elite-section">
+                <h2 class="section-title" style="margin-top: 0;">🏆 Elite Questions | بنك أسئلة المتفوقين</h2>
+                <p style="text-align: center; color: #666; margin-top: 10px;">اضغط على مرحلتك الدراسية لتحميل أقوى الأسئلة والأفكار التنافسية المتقدمة لطلاب اللغات:</p>
                 
-                <a href="https://docs.google.com/forms/" target="_blank" class="quiz-card">
-                    <i class="fa-solid fa-calculator"></i>
-                    <h4>Senior 1</h4>
-                    <p>اختبار الصف الأول الثانوي</p>
-                    <span class="quiz-btn">ابدأ التحدي <i class="fa-solid fa-play"></i></span>
-                </a>
+                <div class="elite-grid">
+                    <a href="#" class="elite-stage-box">
+                        <i class="fa-solid fa-star"></i>
+                        <h4>Prep 1</h4>
+                        <span>أولى إعدادي لغات</span>
+                    </a>
+                    <a href="#" class="elite-stage-box">
+                        <i class="fa-solid fa-star"></i>
+                        <h4>Prep 2</h4>
+                        <span>ثانية إعدادي لغات</span>
+                    </a>
+                    <a href="#" class="elite-stage-box">
+                        <i class="fa-solid fa-star"></i>
+                        <h4>Prep 3</h4>
+                        <span>ثالثة إعدادي لغات</span>
+                    </a>
+                    <a href="#" class="elite-stage-box">
+                        <i class="fa-solid fa-crown"></i>
+                        <h4>Senior 1</h4>
+                        <span>أولى ثانوي لغات</span>
+                    </a>
+                    <a href="#" class="elite-stage-box">
+                        <i class="fa-solid fa-crown"></i>
+                        <h4>Senior 2</h4>
+                        <span>ثانية ثانوي لغات</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="features-section">
+                <div class="feature-box">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h3>Step-by-Step Basics</h3>
+                    <p>بندخل المنهج بعد تمكين الطالب من الأساسيات التراكمية في الماث عشان يحل بكل ثقة.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <h3>Smart Solutions</h3>
+                    <p>تدريب مكثف على فنيات النظام الجديد واستخدام الآلة الحاسبة لاختصار الوقت وضمان التقفيل.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-clipboard-question"></i>
+                    <h3>Continuous Evaluation</h3>
+                    <p>اختبارات مستمرة بعد كل حصة للتأكد من استيعاب الطالب لكل فكرة قبل الانتقال للدرس الجديد.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Select Your Academic Grade 🌟</h2>
+            
+            <div class="stages-list">
                 
-                <a href="https://docs.google.com/forms/" target="_blank" class="quiz-card">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <h4>Senior 2</h4>
-                    <p>اختبار الصف الثاني الثانوي</p>
-                    <span class="quiz-btn">ابدأ التحدي <i class="fa-solid fa-play"></i></span>
-                </a>
+                <div class="stage-row">
+                    <div class="stage-info">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <div class="stage-text">
+                            <h3>Prep 1 (الصف الأول الإعدادي)</h3>
+                            <p>Math curriculum for first prep students - Algebra & Geometry.</p>
+                        </div>
+                    </div>
+                    <button class="btn-select-stage" onclick="scrollToForm('Prep 1')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
+                </div>
+
+                <div class="stage-row">
+                    <div class="stage-info">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <div class="stage-text">
+                            <h3>Prep 2 (الصف الثاني الإعدادي)</h3>
+                            <p>Math curriculum for second prep students - Algebra & Geometry.</p>
+                        </div>
+                    </div>
+                    <button class="btn-select-stage" onclick="scrollToForm('Prep 2')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
+                </div>
+
+                <div class="stage-row">
+                    <div class="stage-info">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <div class="stage-text">
+                            <h3>Prep 3 (الصف الثالث الإعدادي)</h3>
+                            <p>Certificated prep stage math - Full support to get full marks.</p>
+                        </div>
+                    </div>
+                    <button class="btn-select-stage" onclick="scrollToForm('Prep 3')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
+                </div>
+
+                <div class="stage-row secondary-row">
+                    <div class="stage-info">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                        <div class="stage-text">
+                            <h3>Senior 1 (الصف الأول الثانوي)</h3>
+                            <p>Secondary stage foundation - Algebra, Trigonometry & Analytical Geometry.</p>
+                        </div>
+                    </div>
+                    <button class="btn-select-stage" onclick="scrollToForm('Senior 1')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
+                </div>
+
+                <div class="stage-row secondary-row">
+                    <div class="stage-info">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                        <div class="stage-text">
+                            <h3>Senior 2 (الصف الثاني الثانوي)</h3>
+                            <p>Pure Math & Applied Math for secondary school students.</p>
+                        </div>
+                    </div>
+                    <button class="btn-select-stage" onclick="scrollToForm('Senior 2')">اشترك الآن <i class="fa-solid fa-arrow-left"></i></button>
+                </div>
+
             </div>
-        </div>
 
-        <div class="video-section">
-            <h2 class="section-title">🎬 مهارات الآلة الحاسبة وفنيات الحل السريع</h2>
-            <p style="color: #666; margin-top: 10px;">شاهد مهارة تحليل أي مقدار ثلاثي في ثوانٍ معدودة بأسلوب مستر وليد عربان</p>
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/K4IJ71GeWHg" frameborder="0" allowfullscreen></iframe>
+            <div class="quiz-section" id="quizSectionBlock">
+                <h2 class="section-title" style="color: white;">🧠 Check Your Level | اختبر مستواك في الماث</h2>
+                <p style="color: #ddd; max-width: 600px; margin: 10px auto 0;">جاهز للتحدي؟ اختر صفك الدراسي الآن وابدأ اختبار تحديد المستوى التفاعلي لتقييم مهاراتك التراكمية في الماث فوراً!</p>
+                
+                <div class="quiz-grid">
+                    <div class="quiz-card" onclick="openInteractiveQuiz('prep')">
+                        <i class="fa-solid fa-brain"></i>
+                        <h4>Prep Stages</h4>
+                        <p>اختبار المرحلة الإعدادية</p>
+                        <span class="quiz-btn">ابدأ التحدي <i class="fa-solid fa-play"></i></span>
+                    </div>
+                    
+                    <div class="quiz-card" onclick="openInteractiveQuiz('senior1')">
+                        <i class="fa-solid fa-calculator"></i>
+                        <h4>Senior 1</h4>
+                        <p>اختبار الصف الأول الثانوي</p>
+                        <span class="quiz-btn">ابدأ التحدي <i class="fa-solid fa-play"></i></span>
+                    </div>
+                    
+                    <div class="quiz-card" onclick="openInteractiveQuiz('senior2')">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <h4>Senior 2</h4>
+                        <p>اختبار الصف الثاني الثانوي</p>
+                        <span class="quiz-btn">ابدأ التحدي <i class="fa-solid fa-play"></i></span>
+                    </div>
+                </div>
+
+                <div class="interactive-quiz-container" id="quizWindow">
+                    <h3 id="currentQuizTitle" style="color: var(--accent-gold); text-align: center; margin-bottom: 25px; font-weight: 900;"></h3>
+                    
+                    <form id="activeQuizForm">
+                        <div id="questionsPlaceHolder"></div>
+                        <button type="button" class="btn-submit" onclick="gradeActiveQuiz()">إنهاء الاختبار وعرض النتيجة الفورية <i class="fa-solid fa-square-poll-vertical"></i></button>
+                    </form>
+
+                    <div class="quiz-result-box" id="activeQuizResultBox"></div>
+                </div>
             </div>
+
+            <div id="adminPanelSection">
+                <h3><i class="fa-solid fa-user-gear" style="color: var(--accent-gold);"></i> لوحة إدارة المنصة (السرية)</h3>
+                <p style="font-size: 1.1rem; color: #333; margin-bottom: 15px;">مرحباً بك يا مستر وليد. هذه اللوحة مخفية تماماً عن الطلاب ولا تفتح إلا بكود الإدارة الخاص بك:</p>
+                <ul style="margin-right: 20px; line-height: 2; color: #555;">
+                    <li>أكواد الطلاب المفعلة حالياً على السستم: <b style="color: green;">PREP-STUDENT</b> و <b style="color: green;">SEC-STUDENT</b></li>
+                    <li>لتغيير الأسئلة أو إضافة أكواد جديدة، يمكنك تعديل الجداول في مصفوفة السكريبت أسفل الملف بكل سهولة وبدون سيرفر.</li>
+                </ul>
+            </div>
+
+            <div class="video-section">
+                <h2 class="section-title">🎬 مهارات الآلة الحاسبة وفنيات الحل السريع</h2>
+                <p style="color: #666; margin-top: 10px;">شاهد مهارة تحليل أي مقدار ثلاثي في ثوانٍ معدودة بأسلوب مستر وليد عربان</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/K4IJ71GeWHg" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="contact-section" id="bookingFormSection">
+                <h2 class="section-title" style="margin-top: 0;">🚀 احجز مكانك في قطار المتفوقين</h2>
+                <p style="text-align: center; color: #555; margin-bottom: 30px;">سجل بياناتك وفريق الدعم هيتواصل معاك فوراً لشرح طريقة الاشتراك وتفعيل الحصص</p>
+                <form id="whatsappForm">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-user"></i> اسم الطالب بالكامل:</label>
+                        <input type="text" placeholder="اكتب اسمك الثلاثي" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-brands fa-whatsapp"></i> رقم هاتف الواتساب الفعال:</label>
+                        <input type="tel" placeholder="01xxxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-school"></i> الصف الدراسي الحالي (Grade):</label>
+                        <select id="gradeSelect" required>
+                            <option value="" disabled selected>اختر صفك الدراسي</option>
+                            <option value="Prep 1 (الصف الأول الإعدادي)">Prep 1 (الصف الأول الإعدادي)</option>
+                            <option value="Prep 2 (الصف الثاني الإعدادي)">Prep 2 (الصف الثاني الإعدادي)</option>
+                            <option value="Prep 3 (الصف الثالث الإعدادي)">Prep 3 (الصف الثالث الإعدادي)</option>
+                            <option value="Senior 1 (الصف الأول الثانوي)">Senior 1 (الصف الأول الثانوي)</option>
+                            <option value="Senior 2 (الصف الثاني الثانوي)">Senior 2 (الصف الثاني الثانوي)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">تسجيل وطلب تفاصيل الاشتراك <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+
         </div>
 
-        <div class="contact-section" id="bookingFormSection">
-            <h2 class="section-title" style="margin-top: 0;">🚀 احجز مكانك في قطار المتفوقين</h2>
-            <p style="text-align: center; color: #555; margin-bottom: 30px;">سجل بياناتك وفريق الدعم هيتواصل معاك فوراً لشرح طريقة الاشتراك وتفعيل الحصص</p>
-            <form id="whatsappForm">
-                <div class="form-group">
-                    <label><i class="fa-solid fa-user"></i> اسم الطالب بالكامل:</label>
-                    <input type="text" placeholder="اكتب اسمك الثلاثي" required>
-                </div>
-                <div class="form-group">
-                    <label><i class="fa-brands fa-whatsapp"></i> رقم هاتف الواتساب الفعال:</label>
-                    <input type="tel" placeholder="01xxxxxxxxx" required>
-                </div>
-                <div class="form-group">
-                    <label><i class="fa-solid fa-school"></i> الصف الدراسي الحالي (Grade):</label>
-                    <select id="gradeSelect" required>
-                        <option value="" disabled selected>اختر صفك الدراسي</option>
-                        <option value="Prep 1 (الصف الأول الإعدادي)">Prep 1 (الصف الأول الإعدادي)</option>
-                        <option value="Prep 2 (الصف الثاني الإعدادي)">Prep 2 (الصف الثاني الإعدادي)</option>
-                        <option value="Prep 3 (الصف الثالث الإعدادي)">Prep 3 (الصف الثالث الإعدادي)</option>
-                        <option value="Senior 1 (الصف الأول الثانوي)">Senior 1 (الصف الأول الثانوي)</option>
-                        <option value="Senior 2 (الصف الثاني الثانوي)">Senior 2 (الصف الثاني الثانوي)</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-submit">تسجيل وطلب تفاصيل الاشتراك <i class="fa-solid fa-paper-plane"></i></button>
-            </form>
-        </div>
-
+        <footer>
+            <p>جميع الحقوق محفوظة لمنصة مستر وليد عربان © 2026</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>جميع الحقوق محفوظة لمنصة مستر وليد عربان © 2026</p>
-    </footer>
 
     <script>
+        // قواعد البيانات الوهمية للأكواد الصالحة في المنصة
+        const validCodes = {
+            "PREP-STUDENT": "طالب بالمرحلة الإعدادية لغات",
+            "SEC-STUDENT": "طالب بالمرحلة الثانوية لغات",
+            "ADMIN-ORBAN": "المستر"
+        };
+
+        // بنك الأسئلة التفاعلية لكل المراحل بالتصحيح التلقائي
+        const quizBank = {
+            prep: {
+                title: "🧠 اختبار تقييم المرحلة الإعدادية لغات",
+                answers: { q1: "4", q2: "18" },
+                html: `
+                    <div class="question-block">
+                        <h4>Q1: If 2^x = 8 , then x + 1 = ...... ?</h4>
+                        <div class="options-list">
+                            <label class="option-item"><input type="radio" name="q1" value="3" onclick="selectOption(this)"> A) 3</label>
+                            <label class="option-item"><input type="radio" name="q1" value="4" onclick="selectOption(this)"> B) 4</label>
+                            <label class="option-item"><input type="radio" name="q1" value="5" onclick="selectOption(this)"> C) 5</label>
+                        </div>
+                    </div>
+                    <div class="question-block">
+                        <h4>Q2: The area of a square whose diagonal length is 6 cm equals ...... cm²?</h4>
+                        <div class="options-list">
+                            <label class="option-item"><input type="radio" name="q2" value="18" onclick="selectOption(this)"> A) 18</label>
+                            <label class="option-item"><input type="radio" name="q2" value="36" onclick="selectOption(this)"> B) 36</label>
+                            <label class="option-item"><input type="radio" name="q2" value="12" onclick="selectOption(this)"> C) 12</label>
+                        </div>
+                    </div>
+                `
+            },
+            senior1: {
+                title: "📊 اختبار تقييم الصف الأول الثانوي لغات",
+                answers: { q1: "-1", q2: "5" },
+                html: `
+                    <div class="question-block">
+                        <h4>Q1: Find the value of i^10 = ...... ?</h4>
+                        <div class="options-list">
+                            <label class="option-item"><input type="radio" name="q1" value="1" onclick="selectOption(this)"> A) 1</label>
+                            <label class="option-item"><input type="radio" name="q1" value="-1" onclick="selectOption(this)"> B) -1</label>
+                            <label class="option-item"><input type="radio" name="q1" value="i" onclick="selectOption(this)"> C) i</label>
+                        </div>
+                    </div>
+                    <div class="question-block">
+                        <h4>Q2: If the matrix A is symmetric, where A = [[2, x-1], [4, 5]], then x = ...... ?</h4>
+                        <div class="options-list">
+                            <label class="option-item"><input type="radio" name="q2" value="3" onclick="selectOption(this)"> A) 3</label>
+                            <label class="option-item"><input type="radio" name="q2" value="5" onclick="selectOption(this)"> B) 5</label>
+                            <label class="option-item"><input type="radio" name="q2" value="4" onclick="selectOption(this)"> C) 4</label>
+                        </div>
+                    </div>
+                `
+            },
+            senior2: {
+                title: "📈 اختبار تقييم الصف الثاني الثانوي لغات",
+                answers: { q1: "2", q2: "even" },
+                html: `
+                    <div class="question-block">
+                        <h4>Q1: lim (x -> 2) [ (x^2 - 4) / (x - 2) ] = ...... ?</h4>
+                        <div class="options-list">
+                            <label class="option-item"><input type="radio" name="q1" value="2" onclick="selectOption(this)"> A) 2</label>
+                            <label class="option-item"><input type="radio" name="q1" value="4" onclick="selectOption(this)"> B) 4</label>
+                            <label class="option-item"><input type="radio" name="q1" value="0" onclick="selectOption(this)"> C) 0</label>
+                        </div>
+                    </div>
+                    <div class="question-block">
+                        <h4>Q2: The function f(x) = x * sin(x) is an ...... function ?</h4>
+                        <div class="options-list">
+                            <label class="option-item"><input type="radio" name="q2" value="even" onclick="selectOption(this)"> A) Even</label>
+                            <label class="option-item"><input type="radio" name="q2" value="odd" onclick="selectOption(this)"> B) Odd</label>
+                            <label class="option-item"><input type="radio" name="q2" value="neither" onclick="selectOption(this)"> C) Neither</label>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        let currentActiveQuizKey = '';
+
+        // نظام التحقق من الأكواد وبوابة العبور
+        function validateStudentCode() {
+            const inputCode = document.getElementById('studentCodeInput').value.trim().toUpperCase();
+            const errorMsg = document.getElementById('loginError');
+            
+            if (validCodes[inputCode]) {
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('mainPlatformContent').style.display = 'block';
+                
+                if (inputCode === "ADMIN-ORBAN") {
+                    document.getElementById('adminPanelSection').style.display = 'block';
+                    document.getElementById('welcomeHeaderTitle').innerHTML = "مرحباً بك يا مستر وليد في لوحة إدارتك الفخمة <span class='english-welcome'>Welcome Back, Sir!</span>";
+                } else {
+                    document.getElementById('welcomeHeaderTitle').innerHTML = `أهلاً بك يا بطل (${validCodes[inputCode]}) <span class='english-welcome'>Let's Master Math Together!</span>`;
+                }
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // تشغيل نظام الامتحانات المباشر بالتصحيح الفوري
+        function openInteractiveQuiz(quizKey) {
+            currentActiveQuizKey = quizKey;
+            const quizData = quizBank[quizKey];
+            
+            document.getElementById('currentQuizTitle').innerText = quizData.title;
+            document.getElementById('questionsPlaceHolder').innerHTML = quizData.html;
+            document.getElementById('activeQuizResultBox').style.display = 'none';
+            
+            const quizWindow = document.getElementById('quizWindow');
+            quizWindow.style.display = 'block';
+            quizWindow.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectOption(element) {
+            const options = element.closest('.options-list').querySelectorAll('.option-item');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.closest('.option-item').classList.add('selected');
+        }
+
+        function gridCheckAnswers(form, answers) {
+            let score = 0;
+            const q1 = form.elements['q1'] ? form.elements['q1'].value : null;
+            const q2 = form.elements['q2'] ? form.elements['q2'].value : null;
+            
+            if (!q1 || !q2) return null;
+            
+            if (q1 === answers.q1) score++;
+            if (q2 === answers.q2) score++;
+            return score;
+        }
+
+        function gradeActiveQuiz() {
+            const form = document.getElementById('activeQuizForm');
+            const quizData = quizBank[currentActiveQuizKey];
+            
+            let result = gridCheckAnswers(form, quizData.answers);
+            if (result === null) {
+                alert("برجاء الإجابة على جميع الأسئلة أولاً قبل إنهاء التحدي!");
+                return;
+            }
+
+            const resultBox = document.getElementById('activeQuizResultBox');
+            resultBox.style.display = 'block';
+            
+            if (result === 2) {
+                resultBox.innerHTML = `🏆 ممتاز جداً الدرجة كاملة: 2/2 <br> <span style='color: green; font-size: 1.1rem;'>مستواك ممتاز في الماث وجاهز للتقفيل مع مستر وليد!</span>`;
+            } else {
+                resultBox.innerHTML = `👍 أحسنت! درجتك هي: ${result}/2 <br> <span style='color: #d97706; font-size: 1.1rem;'>جيد جداً، والمستر هيظبطلك الأخطاء دي في الحصص عشان مفيش فكرة تقف قدامك!</span>`;
+            }
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // الإسكربتات الأصلية القديمة للموقع دون أي تعديل
         function scrollToForm(gradeValue) {
             const formSection = document.getElementById('bookingFormSection');
             formSection.scrollIntoView({ behavior: 'smooth' });
