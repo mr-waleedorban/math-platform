@@ -536,17 +536,37 @@
         }
 
         /* =======================================================
-           🧮 ستايل الآلة الحاسبة الاحترافية المضافة حديثاً
+           🧮 ستايل الآلة الحاسبة الاحترافية بعد التعديل (نافذة عائمة)
            ======================================================= */
         .calc-wrapper {
             background: var(--panel-bg);
-            border-radius: 25px;
-            padding: 30px;
-            margin: 40px 0;
-            border: 1px solid rgba(128,128,128,0.1);
-            display: flex;
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--accent-gold);
+            display: none; /* مخفية افتراضياً وتظهر عند الضغط */
             flex-direction: column;
             align-items: center;
+            
+            /* إعدادات النافذة العائمة (Popup) */
+            position: fixed;
+            bottom: 30px;
+            left: 100px; /* تظهر بجوار الأزرار العائمة */
+            z-index: 1000;
+            width: 320px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        .calc-wrapper.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @media (max-width: 500px) {
+            .calc-wrapper {
+                left: 15px;
+                bottom: 320px; /* في الشاشات الصغيرة تظهر فوق الأزرار العائمة */
+                width: calc(100% - 30px);
+            }
         }
         
         .calculator {
@@ -678,6 +698,10 @@
 
     <!-- 📱 الأزرار العائمة السريعة -->
     <div class="floating-actions">
+        <!-- زر الآلة الحاسبة العائم (يفتح ويغلق نافذة الآلة الحاسبة) -->
+        <button class="action-circle" onclick="document.querySelector('.calc-wrapper').classList.toggle('show')" title="Calculator">
+            <i class="fa-solid fa-calculator"></i>
+        </button>
         <!-- زر التبديل بين الوضع الصباحي والليلي -->
         <button class="action-circle theme-toggle" onclick="toggleTheme()" title="تغيير المظهر">
             <i class="fa-solid fa-sun" id="themeIcon"></i>
@@ -803,16 +827,13 @@
             </div>
 
             <!-- ========================================== -->
-            <!-- 🧮 قسم الآلة الحاسبة الاحترافية (Calculator) -->
+            <!-- 🧮 قسم الآلة الحاسبة الاحترافية (Calculator) بعد تحويله لنافذة منبثقة -->
             <!-- ========================================== -->
             <div class="calc-wrapper">
-                <h2 class="main-title" style="margin-top:0; width: 100%; border-color:var(--accent-gold);">
-                    <i class="fa-solid fa-calculator"></i> كالكوليتور احترافي - Calculator
+                <h2 class="main-title" style="margin-top:0; margin-bottom:15px; width: 100%; border-color:var(--accent-gold); font-size: 1.4rem;">
+                    <i class="fa-solid fa-calculator"></i> Calculator
                 </h2>
-                <p style="color: var(--text-muted); width: 100%; margin-bottom: 25px; font-size: 0.95rem;">
-                    استخدم الآلة الحاسبة المتقدمة المدمجة لإنجاز العمليات الرياضية السريعة أثناء المذاكرة.
-                </p>
-
+                
                 <div class="calculator">
                     <div class="calc-display">
                         <div class="prev-operand" id="prevOperand"></div>
@@ -887,231 +908,7 @@
                     </div>
                 </form>
             </div>
-
-        </div>
-
-        <!-- 🚪 البوابة التعليمية الفرعية الديناميكية (تظهر عند الضغط على أي صف) -->
-        <div id="portalViewSection" class="portal-view">
-            <div class="portal-header">
-                <div>
-                    <h2 id="portalGradeTitle" style="font-weight: 900; color: #fff;"></h2>
-                    <p style="color: var(--accent-gold); font-size: 0.9rem; margin-top: 5px;"><i class="fa-solid fa-circle-check"></i> أنت الآن تتصفح المحتوى الكامل والحصري المتاح مجاناً</p>
-                </div>
-                <button class="btn-back" onclick="exitPortal()"><i class="fa-solid fa-right-from-bracket"></i> الخروج للرئيسية</button>
-            </div>
-
-            <!-- تبويبات التنقل الداخلي -->
-            <div class="portal-tabs">
-                <button class="tab-btn active" onclick="switchTab('lecturesTab', this)"><i class="fa-solid fa-video"></i> المحاضرات المرئية</button>
-                <button class="tab-btn" onclick="switchTab('bookletsTab', this)"><i class="fa-solid fa-book-open"></i> المذكرات والملخصات</button>
-                <button class="tab-btn" onclick="switchTab('examsTab', this)"><i class="fa-solid fa-square-poll-vertical"></i> بنك الأسئلة والامتحانات</button>
-            </div>
-
-            <!-- محتوى تبويب المحاضرات -->
-            <div id="lecturesTab" class="tab-content-panel active">
-                <div class="content-item-card">
-                    <h4>المحاضرة التأسيسية الشاملة في الماث (Introduction Course)</h4>
-                    <div class="content-meta">
-                        <span><i class="fa-solid fa-clock"></i> ساعة وثلث</span>
-                        <span><i class="fa-solid fa-eye"></i> متاح للجميع</span>
-                    </div>
-                    <a href="https://www.youtube.com/embed/dQw4w9WgXcQ" target="_blank" class="btn-action-content">مشاهدة المحاضرة الآن <i class="fa-solid fa-play"></i></a>
-                </div>
-                <div class="content-item-card">
-                    <h4>شرح الوحدة الأولى - الدرس الأول (Unit 1 - Lesson 1)</h4>
-                    <div class="content-meta">
-                        <span><i class="fa-solid fa-lock"></i> يتطلب اشتراك</span>
-                        <span><i class="fa-solid fa-calendar"></i> متاح قريباً</span>
-                    </div>
-                    <button class="btn-action-content" style="opacity: 0.6; cursor: not-allowed;" onclick="scrollToBooking()">احجز مقعدك لفتح الدرس <i class="fa-solid fa-lock"></i></button>
-                </div>
-            </div>
-
-            <!-- محتوى تبويب المذكرات PDF -->
-            <div id="bookletsTab" class="tab-content-panel">
-                <div class="content-item-card">
-                    <h4>مذكرة الشرح والأساسيات التراكمية (Math Basics Booklet)</h4>
-                    <div class="content-meta">
-                        <span><i class="fa-solid fa-file-pdf" style="color: red;"></i> PDF جاهز</span>
-                        <span><i class="fa-solid fa-download"></i> مجاني</span>
-                    </div>
-                    <a href="#" class="btn-action-content">تحميل المذكرة فوراً <i class="fa-solid fa-circle-down"></i></a>
-                </div>
-                <!-- استكمال الكارت الأخير المقطوع من رسالتك -->
-                <div class="content-item-card">
-                    <h4>بنك الأسئلة والتدريبات الشاملة (Exercises Bank)</h4>
-                    <div class="content-meta">
-                        <span><i class="fa-solid fa-lock"></i> يتطلب اشتراك</span>
-                        <span><i class="fa-solid fa-file-lines"></i> غير متاح</span>
-                    </div>
-                    <button class="btn-action-content" style="opacity: 0.6; cursor: not-allowed;" onclick="scrollToBooking()">احجز مقعدك للتحميل <i class="fa-solid fa-lock"></i></button>
-                </div>
-            </div>
-
-            <!-- محتوى تبويب الامتحانات -->
-            <div id="examsTab" class="tab-content-panel">
-                <div class="content-item-card">
-                    <h4>امتحان تقييم المستوى الشامل (Placement Test)</h4>
-                    <div class="content-meta">
-                        <span><i class="fa-solid fa-stopwatch"></i> 45 دقيقة</span>
-                        <span><i class="fa-solid fa-unlock"></i> مجاني ومتاح</span>
-                    </div>
-                    <a href="#" class="btn-action-content" style="background: var(--accent-gold); color:#fff;">ابدأ الامتحان الآن <i class="fa-solid fa-pen"></i></a>
-                </div>
-            </div>
-
         </div>
     </div>
-
-    <!-- الفوتر -->
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2026 | منصة مستر وليد عربان للرياضيات - Premium Math Academy</p>
-    </footer>
-
-    <!-- سكربت جافاسكربت لتشغيل الآلة الحاسبة وجميع أزرار المنصة -->
-    <script>
-        // === 1. وظائف المنصة الأساسية (تبديل الوضع، التنقل، الحجز) ===
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const icon = document.getElementById('themeIcon');
-            if(document.body.classList.contains('light-mode')) {
-                icon.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                icon.classList.replace('fa-moon', 'fa-sun');
-            }
-        }
-
-        function enterPortal(grade) {
-            document.getElementById('mainDashboardView').style.display = 'none';
-            document.getElementById('portalViewSection').style.display = 'block';
-            document.getElementById('portalGradeTitle').innerText = grade;
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        function exitPortal() {
-            document.getElementById('portalViewSection').style.display = 'none';
-            document.getElementById('mainDashboardView').style.display = 'block';
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(button => button.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
-        }
-
-        function scrollToBooking() {
-            exitPortal();
-            setTimeout(() => {
-                document.getElementById('bookingSection').scrollIntoView({behavior: 'smooth'});
-            }, 100);
-        }
-
-        function saveBooking(e) {
-            e.preventDefault();
-            const name = document.getElementById('nameInput').value;
-            const grade = document.getElementById('gradeSelect').value;
-            const phone = document.getElementById('studentPhone').value;
-            const message = `أهلاً مستر وليد، أريد الحجز بالمنصة.%0Aالاسم: ${name}%0Aالصف: ${grade}%0Aرقم الواتساب: ${phone}`;
-            window.open(`https://wa.me/201114458236?text=${message}`, '_blank');
-        }
-
-        // === 2. وظائف الآلة الحاسبة الاحترافية ===
-        let currentOperand = '0';
-        let previousOperand = '';
-        let operation = undefined;
-
-        const currTextElement = document.getElementById('currOperand');
-        const prevTextElement = document.getElementById('prevOperand');
-
-        function updateDisplay() {
-            currTextElement.innerText = currentOperand;
-            if (operation != null) {
-                prevTextElement.innerText = `${previousOperand} ${operation}`;
-            } else {
-                prevTextElement.innerText = '';
-            }
-        }
-
-        function clearCalc() {
-            currentOperand = '0';
-            previousOperand = '';
-            operation = undefined;
-            updateDisplay();
-        }
-
-        function deleteNumber() {
-            if (currentOperand === '0') return;
-            currentOperand = currentOperand.toString().slice(0, -1);
-            if (currentOperand === '') currentOperand = '0';
-            updateDisplay();
-        }
-
-        function appendNumber(number) {
-            if (number === '.' && currentOperand.includes('.')) return;
-            if (currentOperand === '0' && number !== '.') {
-                currentOperand = number;
-            } else {
-                currentOperand = currentOperand.toString() + number.toString();
-            }
-            updateDisplay();
-        }
-
-        function chooseOperation(op) {
-            if (currentOperand === '' && op !== '-') return;
-            if (previousOperand !== '') {
-                compute();
-            }
-            operation = op;
-            previousOperand = currentOperand;
-            currentOperand = '';
-            updateDisplay();
-        }
-
-        function calcAction(actionType) {
-            const current = parseFloat(currentOperand);
-            if (isNaN(current)) return;
-            
-            switch (actionType) {
-                case 'sqrt':
-                    if(current < 0) { alert('Invalid Input'); clearCalc(); return; }
-                    currentOperand = Math.sqrt(current).toString();
-                    break;
-                case 'sqr':
-                    currentOperand = Math.pow(current, 2).toString();
-                    break;
-                case 'inv':
-                    if(current === 0) { alert('Cannot divide by zero'); clearCalc(); return; }
-                    currentOperand = (1 / current).toString();
-                    break;
-            }
-            updateDisplay();
-        }
-
-        function compute() {
-            let computation;
-            const prev = parseFloat(previousOperand);
-            const current = parseFloat(currentOperand);
-            if (isNaN(prev) || isNaN(current)) return;
-            switch (operation) {
-                case '+': computation = prev + current; break;
-                case '-': computation = prev - current; break;
-                case '*': computation = prev * current; break;
-                case '÷':
-                case '/': 
-                    if(current === 0) { alert('Cannot divide by zero'); clearCalc(); return; }
-                    computation = prev / current; 
-                    break;
-                case '%': computation = prev % current; break;
-                default: return;
-            }
-            currentOperand = computation.toString();
-            operation = undefined;
-            previousOperand = '';
-            updateDisplay();
-        }
-    </script>
 </body>
 </html>
