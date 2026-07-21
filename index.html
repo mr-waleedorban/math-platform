@@ -487,27 +487,6 @@
             box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
         }
 
-        /* لوحة التحكم المخفية */
-        #adminDashboard {
-            display: none;
-            background: var(--panel-bg);
-            color: var(--text-light);
-            padding: 30px;
-            border-radius: 20px;
-            margin-top: 40px;
-        }
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        .admin-table th, .admin-table td {
-            padding: 12px;
-            border: 1px solid rgba(128,128,128,0.2);
-            text-align: right;
-        }
-        .admin-table th { background: rgba(197, 160, 89, 0.1); color: var(--accent-gold); }
-
         footer {
             background: var(--panel-bg);
             padding: 25px;
@@ -695,7 +674,7 @@
             <!-- 📋 استمارة الحجز والاشتراك المباشرة -->
             <div class="booking-card" id="bookingSection">
                 <h2 class="main-title" style="margin-top:0; border-color:var(--accent-gold);"><i class="fa-solid fa-file-signature"></i> استمارة الحجز والالتحاق الفوري</h2>
-                <p style="color: var(--text-muted); font-size: 0.95rem;">سجل بياناتك الرسمية الآن، وهنتواصل معاك في أقرب وقت لتأكيد الحجز وتفعيل حسابك بالمنصة:</p>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">سجل بياناتك الآن، وسيتم تحويلك فوراً للواتساب لتأكيد الحجز وتفعيل حسابك بالمنصة:</p>
                 
                 <form id="bookingForm" onsubmit="saveBooking(event)">
                     <div class="form-grid">
@@ -714,34 +693,13 @@
                                 <option value="Senior 2">Senior 2 (ثانية ثانوي لغات)</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label><i class="fa-solid fa-phone"></i> رقم هاتف الطالب (واتساب)</label>
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label><i class="fa-brands fa-whatsapp"></i> رقم هاتف الطالب (واتساب)</label>
                             <input type="tel" id="studentPhone" required placeholder="01xxxxxxxxx">
                         </div>
-                        <div class="form-group">
-                            <label><i class="fa-solid fa-users"></i> رقم هاتف ولي الأمر</label>
-                            <input type="tel" id="parentPhone" required placeholder="01xxxxxxxxx">
-                        </div>
-                        <button type="submit" class="btn-submit-booking">تأكيد إرسال البيانات والحجز الفوري <i class="fa-solid fa-paper-plane"></i></button>
+                        <button type="submit" class="btn-submit-booking">تأكيد إرسال البيانات والحجز الفوري <i class="fa-brands fa-whatsapp"></i></button>
                     </div>
                 </form>
-            </div>
-
-            <!-- 👑 لوحة التحكم المخفية التلقائية لرؤية الحجوزات محلياً -->
-            <div id="adminDashboard">
-                <h3 style="font-weight: 900; margin-bottom: 10px;"><i class="fa-solid fa-user-gear"></i> لوحة الحجوزات الواردة (خاص بالإدارة)</h3>
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>اسم الطالب</th>
-                            <th>الصف</th>
-                            <th>رقم الطالب</th>
-                            <th>رقم ولي الأمر</th>
-                            <th>إجراء</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminTableBody"></tbody>
-                </table>
             </div>
 
         </div>
@@ -803,7 +761,7 @@
                 </div>
             </div>
 
-            <!-- محتوى تبويب بنك الأسئلة والامتحانات (إضافة لاستكمال الأقسام) -->
+            <!-- محتوى تبويب بنك الأسئلة والامتحانات -->
             <div id="examsTab" class="tab-content-panel">
                 <div class="content-item-card">
                     <h4>اختبار تحديد المستوى (Placement Test)</h4>
@@ -823,7 +781,7 @@
         جميع الحقوق محفوظة &copy; 2026 | منصة مستر وليد عربان
     </footer>
 
-    <!-- سكريبتات الجافاسكريبت لتشغيل المنصة والوضع الليلي/الصباحي -->
+    <!-- سكريبتات الجافاسكريبت لتشغيل المنصة والوضع الليلي/الصباحي وإرسال الواتساب -->
     <script>
         // -------------------------
         // 🌓 نظام الوضع الليلي/الصباحي
@@ -843,80 +801,76 @@
             }
         }
 
-        // حفظ التفضيل عند إعادة تحميل الصفحة
-        window.onload = function() {
+        // استرجاع المظهر المحفوظ عند فتح الصفحة
+        window.onload = () => {
             if (localStorage.getItem('theme') === 'light') {
                 document.body.classList.add('light-mode');
-                document.getElementById('themeIcon').classList.remove('fa-sun');
-                document.getElementById('themeIcon').classList.add('fa-moon');
+                document.getElementById('themeIcon').classList.replace('fa-sun', 'fa-moon');
             }
         };
 
         // -------------------------
-        // 🚪 نظام البوابة التعليمية والتنقلات
+        // 🚪 نظام البوابة والتنقل
         // -------------------------
-        function enterPortal(gradeName) {
+        function enterPortal(grade) {
             document.getElementById('mainDashboardView').style.display = 'none';
             document.getElementById('portalViewSection').style.display = 'block';
-            document.getElementById('portalGradeTitle').innerText = gradeName;
+            document.getElementById('portalGradeTitle').innerText = grade;
             window.scrollTo(0, 0);
         }
 
         function exitPortal() {
             document.getElementById('portalViewSection').style.display = 'none';
             document.getElementById('mainDashboardView').style.display = 'block';
+            window.scrollTo(0, 0);
         }
 
         function switchTab(tabId, btnElement) {
-            // إخفاء كل التبويبات
-            let panels = document.querySelectorAll('.tab-content-panel');
-            panels.forEach(panel => panel.classList.remove('active'));
+            // إخفاء كل المحتوى وإزالة التفعيل من الأزرار
+            document.querySelectorAll('.tab-content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
             
-            // إزالة التفعيل من كل الأزرار
-            let btns = document.querySelectorAll('.tab-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
-            
-            // تفعيل التبويب المختار
+            // إظهار المحتوى المطلوب وتفعيل الزر
             document.getElementById(tabId).classList.add('active');
             btnElement.classList.add('active');
         }
 
         function scrollToBooking() {
-            exitPortal(); // الخروج للرئيسية أولاً إذا كان داخل البوابة
+            exitPortal(); // الخروج للرئيسية أولاً
             setTimeout(() => {
                 document.getElementById('bookingSection').scrollIntoView({ behavior: 'smooth' });
             }, 100);
         }
 
         // -------------------------
-        // 📋 نظام التسجيل (محاكاة وهمية)
+        // 📱 إرسال الحجز للواتساب مباشرة
         // -------------------------
         function saveBooking(event) {
-            event.preventDefault(); // منع إعادة التحميل
+            event.preventDefault(); // منع إعادة تحميل الصفحة
             
-            // جلب البيانات
-            const name = document.getElementById('nameInput').value;
-            const grade = document.getElementById('gradeSelect').value;
-            const sPhone = document.getElementById('studentPhone').value;
-            const pPhone = document.getElementById('parentPhone').value;
+            // جلب البيانات التي أدخلها الطالب
+            const studentName = document.getElementById('nameInput').value;
+            const studentGrade = document.getElementById('gradeSelect').value;
+            const studentPhone = document.getElementById('studentPhone').value;
 
-            // إظهار لوحة التحكم (الخاصة بالإدارة)
-            document.getElementById('adminDashboard').style.display = 'block';
+            // تنسيق الرسالة التلقائية التي ستكتب في الواتساب
+            const whatsappMessage = `السلام عليكم مستر وليد، أرغب في تأكيد الحجز بالمنصة.
+الاسم: ${studentName}
+الصف الدراسي: ${studentGrade}
+رقم الواتساب: ${studentPhone}`;
+
+            // تحويل النص ليكون متوافقاً مع روابط الإنترنت (URL Encoding)
+            const encodedMessage = encodeURIComponent(whatsappMessage);
             
-            // إضافة البيانات للجدول
-            const tbody = document.getElementById('adminTableBody');
-            const row = `<tr>
-                <td>${name}</td>
-                <td>${grade}</td>
-                <td>${sPhone}</td>
-                <td>${pPhone}</td>
-                <td><button style="background: green; color: white; border: none; padding: 5px 10px; border-radius: 5px;">تأكيد</button></td>
-            </tr>`;
-            tbody.innerHTML += row;
-
-            // إظهار رسالة وتفريغ الحقول
-            alert("✅ تم استلام طلب الحجز بنجاح! سنتواصل معك قريباً.");
-            document.getElementById('bookingForm').reset();
+            // رقم الواتساب الخاص بالمنصة مع كود مصر (+20)
+            const whatsappNumber = "201114458236";
+            
+            // فتح شات الواتساب مباشرة في نافذة جديدة مع الرسالة التلقائية
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
         }
     </script>
 </body>
