@@ -534,6 +534,137 @@
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* =======================================================
+           🧮 ستايل الآلة الحاسبة الاحترافية المضافة حديثاً
+           ======================================================= */
+        .calc-wrapper {
+            background: var(--panel-bg);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(128,128,128,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .calculator {
+            background: #000;
+            border-radius: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            direction: ltr; /* اتجاه الأرقام من اليسار لليمين */
+        }
+
+        body.light-mode .calculator {
+            background: #f9fafb;
+            border: 1px solid rgba(179, 136, 59, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .calc-display {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: right;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            word-wrap: break-word;
+        }
+
+        body.light-mode .calc-display {
+            background: #fff;
+            color: #111;
+        }
+
+        .calc-display .prev-operand {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            min-height: 24px;
+        }
+
+        .calc-display .curr-operand {
+            color: var(--text-light);
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        body.light-mode .calc-display .curr-operand {
+            color: #111;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .calc-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: none;
+            padding: 18px 10px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        body.light-mode .calc-btn {
+            background: #e5e7eb;
+            color: #111;
+        }
+
+        .calc-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        body.light-mode .calc-btn:hover {
+            background: #d1d5db;
+        }
+
+        .calc-btn.operator {
+            background: rgba(197, 160, 89, 0.15);
+            color: var(--accent-gold);
+        }
+
+        body.light-mode .calc-btn.operator {
+            background: rgba(179, 136, 59, 0.15);
+        }
+
+        .calc-btn.operator:hover {
+            background: var(--accent-gold);
+            color: #fff;
+        }
+
+        .calc-btn.action {
+            background: #b91c1c;
+            color: #fff;
+        }
+
+        .calc-btn.action:hover {
+            background: #dc2626;
+        }
+
+        .calc-btn.equals {
+            background: var(--accent-gold);
+            color: #fff;
+            grid-column: span 2;
+        }
+
+        .calc-btn.equals:hover {
+            background: #a38245;
+        }
     </style>
 </head>
 <body>
@@ -671,6 +802,61 @@
                 </div>
             </div>
 
+            <!-- ========================================== -->
+            <!-- 🧮 قسم الآلة الحاسبة الاحترافية (Calculator) -->
+            <!-- ========================================== -->
+            <div class="calc-wrapper">
+                <h2 class="main-title" style="margin-top:0; width: 100%; border-color:var(--accent-gold);">
+                    <i class="fa-solid fa-calculator"></i> كالكوليتور احترافي - Calculator
+                </h2>
+                <p style="color: var(--text-muted); width: 100%; margin-bottom: 25px; font-size: 0.95rem;">
+                    استخدم الآلة الحاسبة المتقدمة المدمجة لإنجاز العمليات الرياضية السريعة أثناء المذاكرة.
+                </p>
+
+                <div class="calculator">
+                    <div class="calc-display">
+                        <div class="prev-operand" id="prevOperand"></div>
+                        <div class="curr-operand" id="currOperand">0</div>
+                    </div>
+                    <div class="calc-grid">
+                        <!-- الصف الأول: عمليات متقدمة -->
+                        <button class="calc-btn operator" onclick="calcAction('sqrt')">√</button>
+                        <button class="calc-btn operator" onclick="calcAction('sqr')">x²</button>
+                        <button class="calc-btn operator" onclick="calcAction('inv')">1/x</button>
+                        <button class="calc-btn operator" onclick="chooseOperation('%')">%</button>
+                        
+                        <!-- الصف الثاني: مسح وتقسيم -->
+                        <button class="calc-btn action" onclick="clearCalc()">C</button>
+                        <button class="calc-btn action" onclick="deleteNumber()">DEL</button>
+                        <button class="calc-btn operator" style="grid-column: span 2;" onclick="chooseOperation('/')">÷</button>
+
+                        <!-- الصف الثالث: أرقام وضرب -->
+                        <button class="calc-btn" onclick="appendNumber('7')">7</button>
+                        <button class="calc-btn" onclick="appendNumber('8')">8</button>
+                        <button class="calc-btn" onclick="appendNumber('9')">9</button>
+                        <button class="calc-btn operator" onclick="chooseOperation('*')">×</button>
+
+                        <!-- الصف الرابع: أرقام وطرح -->
+                        <button class="calc-btn" onclick="appendNumber('4')">4</button>
+                        <button class="calc-btn" onclick="appendNumber('5')">5</button>
+                        <button class="calc-btn" onclick="appendNumber('6')">6</button>
+                        <button class="calc-btn operator" onclick="chooseOperation('-')">-</button>
+
+                        <!-- الصف الخامس: أرقام وجمع -->
+                        <button class="calc-btn" onclick="appendNumber('1')">1</button>
+                        <button class="calc-btn" onclick="appendNumber('2')">2</button>
+                        <button class="calc-btn" onclick="appendNumber('3')">3</button>
+                        <button class="calc-btn operator" onclick="chooseOperation('+')">+</button>
+
+                        <!-- الصف السادس: الصفر والعلامة واليساوي -->
+                        <button class="calc-btn" onclick="appendNumber('0')" style="grid-column: span 2;">0</button>
+                        <button class="calc-btn" onclick="appendNumber('.')">.</button>
+                        <button class="calc-btn equals" onclick="compute()">=</button>
+                    </div>
+                </div>
+            </div>
+            <!-- ========================================== -->
+
             <!-- 📋 استمارة الحجز والاشتراك المباشرة -->
             <div class="booking-card" id="bookingSection">
                 <h2 class="main-title" style="margin-top:0; border-color:var(--accent-gold);"><i class="fa-solid fa-file-signature"></i> استمارة الحجز والالتحاق الفوري</h2>
@@ -751,126 +937,180 @@
                     </div>
                     <a href="#" class="btn-action-content">تحميل المذكرة فوراً <i class="fa-solid fa-circle-down"></i></a>
                 </div>
+                <!-- استكمال الكارت الأخير المقطوع من رسالتك -->
                 <div class="content-item-card">
-                    <h4>ملخص قوانين وأفكار المتفوقين (Elite Formula Sheet)</h4>
+                    <h4>بنك الأسئلة والتدريبات الشاملة (Exercises Bank)</h4>
                     <div class="content-meta">
                         <span><i class="fa-solid fa-lock"></i> يتطلب اشتراك</span>
-                        <span><i class="fa-solid fa-calendar"></i> متاح قريباً</span>
+                        <span><i class="fa-solid fa-file-lines"></i> غير متاح</span>
                     </div>
                     <button class="btn-action-content" style="opacity: 0.6; cursor: not-allowed;" onclick="scrollToBooking()">احجز مقعدك للتحميل <i class="fa-solid fa-lock"></i></button>
                 </div>
             </div>
 
-            <!-- محتوى تبويب بنك الأسئلة والامتحانات -->
+            <!-- محتوى تبويب الامتحانات -->
             <div id="examsTab" class="tab-content-panel">
                 <div class="content-item-card">
-                    <h4>اختبار تحديد المستوى (Placement Test)</h4>
+                    <h4>امتحان تقييم المستوى الشامل (Placement Test)</h4>
                     <div class="content-meta">
                         <span><i class="fa-solid fa-stopwatch"></i> 45 دقيقة</span>
-                        <span><i class="fa-solid fa-star"></i> مجاني</span>
+                        <span><i class="fa-solid fa-unlock"></i> مجاني ومتاح</span>
                     </div>
-                    <a href="#" class="btn-action-content">بدء الاختبار الآن <i class="fa-solid fa-pen"></i></a>
+                    <a href="#" class="btn-action-content" style="background: var(--accent-gold); color:#fff;">ابدأ الامتحان الآن <i class="fa-solid fa-pen"></i></a>
                 </div>
             </div>
 
-        </div> <!-- نهاية قسم البوابة -->
+        </div>
+    </div>
 
-    </div> <!-- نهاية الـ container -->
-
+    <!-- الفوتر -->
     <footer>
-        جميع الحقوق محفوظة &copy; 2026 | منصة مستر وليد عربان
+        <p>جميع الحقوق محفوظة &copy; 2026 | منصة مستر وليد عربان للرياضيات - Premium Math Academy</p>
     </footer>
 
-    <!-- سكريبتات الجافاسكريبت لتشغيل المنصة والوضع الليلي/الصباحي وإرسال الواتساب -->
+    <!-- سكربت جافاسكربت لتشغيل الآلة الحاسبة وجميع أزرار المنصة -->
     <script>
-        // -------------------------
-        // 🌓 نظام الوضع الليلي/الصباحي
-        // -------------------------
+        // === 1. وظائف المنصة الأساسية (تبديل الوضع، التنقل، الحجز) ===
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
             const icon = document.getElementById('themeIcon');
-            
-            if (document.body.classList.contains('light-mode')) {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
+            if(document.body.classList.contains('light-mode')) {
+                icon.classList.replace('fa-sun', 'fa-moon');
             } else {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
             }
         }
 
-        // استرجاع المظهر المحفوظ عند فتح الصفحة
-        window.onload = () => {
-            if (localStorage.getItem('theme') === 'light') {
-                document.body.classList.add('light-mode');
-                document.getElementById('themeIcon').classList.replace('fa-sun', 'fa-moon');
-            }
-        };
-
-        // -------------------------
-        // 🚪 نظام البوابة والتنقل
-        // -------------------------
         function enterPortal(grade) {
             document.getElementById('mainDashboardView').style.display = 'none';
             document.getElementById('portalViewSection').style.display = 'block';
             document.getElementById('portalGradeTitle').innerText = grade;
-            window.scrollTo(0, 0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function exitPortal() {
             document.getElementById('portalViewSection').style.display = 'none';
             document.getElementById('mainDashboardView').style.display = 'block';
-            window.scrollTo(0, 0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        function switchTab(tabId, btnElement) {
-            // إخفاء كل المحتوى وإزالة التفعيل من الأزرار
-            document.querySelectorAll('.tab-content-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(button => button.classList.remove('active'));
             
-            // إظهار المحتوى المطلوب وتفعيل الزر
             document.getElementById(tabId).classList.add('active');
-            btnElement.classList.add('active');
+            btn.classList.add('active');
         }
 
         function scrollToBooking() {
-            exitPortal(); // الخروج للرئيسية أولاً
+            exitPortal();
             setTimeout(() => {
-                document.getElementById('bookingSection').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('bookingSection').scrollIntoView({behavior: 'smooth'});
             }, 100);
         }
 
-        // -------------------------
-        // 📱 إرسال الحجز للواتساب مباشرة
-        // -------------------------
-        function saveBooking(event) {
-            event.preventDefault(); // منع إعادة تحميل الصفحة
-            
-            // جلب البيانات التي أدخلها الطالب
-            const studentName = document.getElementById('nameInput').value;
-            const studentGrade = document.getElementById('gradeSelect').value;
-            const studentPhone = document.getElementById('studentPhone').value;
+        function saveBooking(e) {
+            e.preventDefault();
+            const name = document.getElementById('nameInput').value;
+            const grade = document.getElementById('gradeSelect').value;
+            const phone = document.getElementById('studentPhone').value;
+            const message = `أهلاً مستر وليد، أريد الحجز بالمنصة.%0Aالاسم: ${name}%0Aالصف: ${grade}%0Aرقم الواتساب: ${phone}`;
+            window.open(`https://wa.me/201114458236?text=${message}`, '_blank');
+        }
 
-            // تنسيق الرسالة التلقائية التي ستكتب في الواتساب
-            const whatsappMessage = `السلام عليكم مستر وليد، أرغب في تأكيد الحجز بالمنصة.
-الاسم: ${studentName}
-الصف الدراسي: ${studentGrade}
-رقم الواتساب: ${studentPhone}`;
+        // === 2. وظائف الآلة الحاسبة الاحترافية ===
+        let currentOperand = '0';
+        let previousOperand = '';
+        let operation = undefined;
 
-            // تحويل النص ليكون متوافقاً مع روابط الإنترنت (URL Encoding)
-            const encodedMessage = encodeURIComponent(whatsappMessage);
+        const currTextElement = document.getElementById('currOperand');
+        const prevTextElement = document.getElementById('prevOperand');
+
+        function updateDisplay() {
+            currTextElement.innerText = currentOperand;
+            if (operation != null) {
+                prevTextElement.innerText = `${previousOperand} ${operation}`;
+            } else {
+                prevTextElement.innerText = '';
+            }
+        }
+
+        function clearCalc() {
+            currentOperand = '0';
+            previousOperand = '';
+            operation = undefined;
+            updateDisplay();
+        }
+
+        function deleteNumber() {
+            if (currentOperand === '0') return;
+            currentOperand = currentOperand.toString().slice(0, -1);
+            if (currentOperand === '') currentOperand = '0';
+            updateDisplay();
+        }
+
+        function appendNumber(number) {
+            if (number === '.' && currentOperand.includes('.')) return;
+            if (currentOperand === '0' && number !== '.') {
+                currentOperand = number;
+            } else {
+                currentOperand = currentOperand.toString() + number.toString();
+            }
+            updateDisplay();
+        }
+
+        function chooseOperation(op) {
+            if (currentOperand === '' && op !== '-') return;
+            if (previousOperand !== '') {
+                compute();
+            }
+            operation = op;
+            previousOperand = currentOperand;
+            currentOperand = '';
+            updateDisplay();
+        }
+
+        function calcAction(actionType) {
+            const current = parseFloat(currentOperand);
+            if (isNaN(current)) return;
             
-            // رقم الواتساب الخاص بالمنصة مع كود مصر (+20)
-            const whatsappNumber = "201114458236";
-            
-            // فتح شات الواتساب مباشرة في نافذة جديدة مع الرسالة التلقائية
-            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+            switch (actionType) {
+                case 'sqrt':
+                    if(current < 0) { alert('Invalid Input'); clearCalc(); return; }
+                    currentOperand = Math.sqrt(current).toString();
+                    break;
+                case 'sqr':
+                    currentOperand = Math.pow(current, 2).toString();
+                    break;
+                case 'inv':
+                    if(current === 0) { alert('Cannot divide by zero'); clearCalc(); return; }
+                    currentOperand = (1 / current).toString();
+                    break;
+            }
+            updateDisplay();
+        }
+
+        function compute() {
+            let computation;
+            const prev = parseFloat(previousOperand);
+            const current = parseFloat(currentOperand);
+            if (isNaN(prev) || isNaN(current)) return;
+            switch (operation) {
+                case '+': computation = prev + current; break;
+                case '-': computation = prev - current; break;
+                case '*': computation = prev * current; break;
+                case '÷':
+                case '/': 
+                    if(current === 0) { alert('Cannot divide by zero'); clearCalc(); return; }
+                    computation = prev / current; 
+                    break;
+                case '%': computation = prev % current; break;
+                default: return;
+            }
+            currentOperand = computation.toString();
+            operation = undefined;
+            previousOperand = '';
+            updateDisplay();
         }
     </script>
 </body>
